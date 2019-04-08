@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://warmqing.github.io/"/>
+  <link href="https://www.oolongbox.com/"/>
   <updated>2019-04-07T09:26:18.609Z</updated>
-  <id>https://warmqing.github.io/</id>
+  <id>https://www.oolongbox.com/</id>
   
   <author>
     <name>warmqing</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>表驱动方法在java、scala中的实践</title>
-    <link href="https://warmqing.github.io/2019/04/07/tabledriven/"/>
-    <id>https://warmqing.github.io/2019/04/07/tabledriven/</id>
+    <link href="https://www.oolongbox.com/2019/04/07/tabledriven/"/>
+    <id>https://www.oolongbox.com/2019/04/07/tabledriven/</id>
     <published>2019-04-07T09:26:18.608Z</published>
     <updated>2019-04-07T09:26:18.609Z</updated>
     
@@ -35,16 +35,16 @@
     </summary>
     
     
-      <category term="java" scheme="https://warmqing.github.io/tags/java/"/>
+      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
     
-      <category term="scala" scheme="https://warmqing.github.io/tags/scala/"/>
+      <category term="scala" scheme="https://www.oolongbox.com/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://warmqing.github.io/2019/04/03/hello-world/"/>
-    <id>https://warmqing.github.io/2019/04/03/hello-world/</id>
+    <link href="https://www.oolongbox.com/2019/04/03/hello-world/"/>
+    <id>https://www.oolongbox.com/2019/04/03/hello-world/</id>
     <published>2019-04-03T02:20:26.184Z</published>
     <updated>2019-04-03T02:12:52.601Z</updated>
     
