@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.oolongbox.com/"/>
-  <updated>2019-04-07T09:26:18.609Z</updated>
+  <updated>2019-04-08T10:44:54.772Z</updated>
   <id>https://www.oolongbox.com/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://www.oolongbox.com/2019/04/08/hexo-algolia/"/>
+    <id>https://www.oolongbox.com/2019/04/08/hexo-algolia/</id>
+    <published>2019-04-08T10:43:24.971Z</published>
+    <updated>2019-04-08T10:44:54.772Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用Algolia索引hexo网站内容"><a href="#使用Algolia索引hexo网站内容" class="headerlink" title="使用Algolia索引hexo网站内容"></a>使用Algolia索引hexo网站内容</h1><h2 id="Algolia配置"><a href="#Algolia配置" class="headerlink" title="Algolia配置"></a>Algolia配置</h2><p>进入hexo工作目录：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-algolia</span><br></pre></td></tr></table></figure><p>在_config.yml中配置algolia选项：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">algolia:</span><br><span class="line">  applicationID: <span class="string">'applicationID'</span></span><br><span class="line">  apiKey: <span class="string">'apiKey'</span></span><br><span class="line">  indexName: <span class="string">'...'</span></span><br></pre></td></tr></table></figure><p>注册登录<a href="https://www.algolia.com" target="_blank" rel="noopener">https://www.algolia.com</a></p><p>找到如下：</p><p>Application ID</p><p><img src="https://i.loli.net/2019/04/08/5cab21bebae38.png" alt="1554718948690"></p><p>search-only api key（这里配置仅查询使用即可）</p><p><img src="https://i.loli.net/2019/04/08/5cab21f135304.png" alt="1554719051526"></p><p>indexName（需要新增index）</p><p><img src="https://i.loli.net/2019/04/08/5cab228466ea6.png" alt="1554719328096"></p><h2 id="在Hexo主题中启用algolia"><a href="#在Hexo主题中启用algolia" class="headerlink" title="在Hexo主题中启用algolia"></a>在Hexo主题中启用algolia</h2><p>见各个主题配置</p><h2 id="algolia索引网站内容"><a href="#algolia索引网站内容" class="headerlink" title="algolia索引网站内容"></a>algolia索引网站内容</h2><p>新增具有Add object, Delete object, List indexes, Delete index权限的API key</p><p>如下：</p><p><img src="https://i.loli.net/2019/04/08/5cab238e33097.png" alt="1554719587049"></p><p>添加环境变量HEXO_ALGOLIA_INDEXING_KEY，执行hexo algolia命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=…</span><br><span class="line">$ ./node_modules/.bin/hexo algolia</span><br></pre></td></tr></table></figure><p>详细请见：<a href="https://github.com/oncletom/hexo-algolia" target="_blank" rel="noopener">https://github.com/oncletom/hexo-algolia</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;使用Algolia索引hexo网站内容&quot;&gt;&lt;a href=&quot;#使用Algolia索引hexo网站内容&quot; class=&quot;headerlink&quot; title=&quot;使用Algolia索引hexo网站内容&quot;&gt;&lt;/a&gt;使用Algolia索引hexo网站内容&lt;/h1&gt;&lt;h2 i
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://www.oolongbox.com/2019/04/08/tracer/"/>
+    <id>https://www.oolongbox.com/2019/04/08/tracer/</id>
+    <published>2019-04-08T09:52:14.900Z</published>
+    <updated>2019-04-08T09:51:52.095Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="tracer：倒排索引-快速分类"><a href="#tracer：倒排索引-快速分类" class="headerlink" title="tracer：倒排索引+快速分类"></a>tracer：倒排索引+快速分类</h1><ul><li>索引，是为了加快信息主体查找过程，基于目标信息主体，预先创建的一种储存结构。</li><li>倒排索引（Inverted index），是一种索引方法，基于信息主体的属性值进行构建。</li><li>本工程基于Map+BitSet结构，采用：属性-&gt;属性值-&gt;信息主体唯一标识，预先构建倒排索引，加速查找过程。</li></ul><p><em>source code：</em></p><p><a href="https://github.com/warmqing/tracer" target="_blank" rel="noopener">https://github.com/warmqing/tracer</a></p><h2 id="索引存储"><a href="#索引存储" class="headerlink" title="索引存储"></a>索引存储</h2><p>定义商品属性【Brand，Color，Size】</p><p>分类A</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>AAA</td></tr><tr><td>Color（颜色）</td><td>Blue，Red，White</td></tr><tr><td>Size（尺寸）</td><td>M，L</td></tr></tbody></table><p>分类B</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>BBB</td></tr><tr><td>Color（颜色）</td><td>Blue，Black</td></tr><tr><td>Size（尺寸）</td><td>M，L，XL</td></tr></tbody></table><p><img src="https://github.com/wqvanchin/tracer/blob/master/image/store1.jpg" alt></p><h2 id="索引查询"><a href="#索引查询" class="headerlink" title="索引查询"></a>索引查询</h2><p>商品1【Brand：AAA】-&gt; 单一属性查询 -&gt; 可能属于ClassA,一定不属于ClassB</p><p>商品2【Color：Blue】-&gt; 单一属性查询 -&gt; 可能属于ClassA, 可能属于ClassB</p><p>商品3【Brand：AAA，Color：Red，Size：M】-&gt;全属性查询 -&gt;一定属于 ClassA</p><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>快速分类问题</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;tracer：倒排索引-快速分类&quot;&gt;&lt;a href=&quot;#tracer：倒排索引-快速分类&quot; class=&quot;headerlink&quot; title=&quot;tracer：倒排索引+快速分类&quot;&gt;&lt;/a&gt;tracer：倒排索引+快速分类&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;索引，是为了加快
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>表驱动方法在java、scala中的实践</title>
