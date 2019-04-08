@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Oolong Box</title>
   
-  <subtitle>The discovery of oolong is an accident,Serendipity is life</subtitle>
+  <subtitle>Oolong is a happy accident,Serendipity is life</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://oolongbox.com/"/>
@@ -48,9 +48,9 @@
     <link href="https://oolongbox.com/2019/04/08/tracer/"/>
     <id>https://oolongbox.com/2019/04/08/tracer/</id>
     <published>2019-04-08T09:52:14.900Z</published>
-    <updated>2019-04-08T11:03:57.438Z</updated>
+    <updated>2019-04-08T13:36:03.368Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="tracer：倒排索引-快速分类"><a href="#tracer：倒排索引-快速分类" class="headerlink" title="tracer：倒排索引+快速分类"></a>tracer：倒排索引+快速分类</h1><ul><li>索引，是为了加快信息主体查找过程，基于目标信息主体，预先创建的一种储存结构。</li><li>倒排索引（Inverted index），是一种索引方法，基于信息主体的属性值进行构建。</li><li>本工程基于Map+BitSet结构，采用：属性-&gt;属性值-&gt;信息主体唯一标识，预先构建倒排索引，加速查找过程。</li></ul><p><em>source code：</em></p><p><a href="https://github.com/warmqing/tracer" target="_blank" rel="noopener">https://github.com/warmqing/tracer</a></p><h2 id="索引存储"><a href="#索引存储" class="headerlink" title="索引存储"></a>索引存储</h2><p>定义商品属性【Brand，Color，Size】</p><p>分类A</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>AAA</td></tr><tr><td>Color（颜色）</td><td>Blue，Red，White</td></tr><tr><td>Size（尺寸）</td><td>M，L</td></tr></tbody></table><p>分类B</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>BBB</td></tr><tr><td>Color（颜色）</td><td>Blue，Black</td></tr><tr><td>Size（尺寸）</td><td>M，L，XL</td></tr></tbody></table><p><img src="https://github.com/wqvanchin/tracer/blob/master/image/store1.jpg" alt></p><h2 id="索引查询"><a href="#索引查询" class="headerlink" title="索引查询"></a>索引查询</h2><p>商品1【Brand：AAA】-&gt; 单一属性查询 -&gt; 可能属于ClassA,一定不属于ClassB</p><p>商品2【Color：Blue】-&gt; 单一属性查询 -&gt; 可能属于ClassA, 可能属于ClassB</p><p>商品3【Brand：AAA，Color：Red，Size：M】-&gt;全属性查询 -&gt;一定属于 ClassA</p><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>快速分类问题</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="tracer：倒排索引-快速分类"><a href="#tracer：倒排索引-快速分类" class="headerlink" title="tracer：倒排索引+快速分类"></a>tracer：倒排索引+快速分类</h1><ul><li>索引，是为了加快信息主体查找过程，基于目标信息主体，预先创建的一种储存结构。</li><li>倒排索引（Inverted index），是一种索引方法，基于信息主体的属性值进行构建。</li><li>本工程基于Map+BitSet结构，采用：属性-&gt;属性值-&gt;信息主体唯一标识，预先构建倒排索引，加速查找过程。</li></ul><p><em>source code：</em></p><p><a href="https://github.com/warmqing/tracer" target="_blank" rel="noopener">https://github.com/warmqing/tracer</a></p><h2 id="索引存储"><a href="#索引存储" class="headerlink" title="索引存储"></a>索引存储</h2><p>定义商品属性【Brand，Color，Size】</p><p>分类A</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>AAA</td></tr><tr><td>Color（颜色）</td><td>Blue，Red，White</td></tr><tr><td>Size（尺寸）</td><td>M，L</td></tr></tbody></table><p>分类B</p><table><thead><tr><th>属性名</th><th>属性值</th></tr></thead><tbody><tr><td>Brand（品牌）</td><td>BBB</td></tr><tr><td>Color（颜色）</td><td>Blue，Black</td></tr><tr><td>Size（尺寸）</td><td>M，L，XL</td></tr></tbody></table><p><img src="https://i.loli.net/2019/04/08/5cab4e3da56cd.jpg" alt></p><h2 id="索引查询"><a href="#索引查询" class="headerlink" title="索引查询"></a>索引查询</h2><p>商品1【Brand：AAA】-&gt; 单一属性查询 -&gt; 可能属于ClassA,一定不属于ClassB</p><p>商品2【Color：Blue】-&gt; 单一属性查询 -&gt; 可能属于ClassA, 可能属于ClassB</p><p>商品3【Brand：AAA，Color：Red，Size：M】-&gt;全属性查询 -&gt;一定属于 ClassA</p><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>快速分类问题</p>]]></content>
     
     <summary type="html">
     
