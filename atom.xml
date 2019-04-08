@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://www.oolongbox.com/"/>
+  <link href="https://oolongbox.com/"/>
   <updated>2019-04-08T11:03:57.753Z</updated>
-  <id>https://www.oolongbox.com/</id>
+  <id>https://oolongbox.com/</id>
   
   <author>
     <name>warmqing</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>使用Algolia索引hexo网站内容</title>
-    <link href="https://www.oolongbox.com/2019/04/08/hexo-algolia/"/>
-    <id>https://www.oolongbox.com/2019/04/08/hexo-algolia/</id>
+    <link href="https://oolongbox.com/2019/04/08/hexo-algolia/"/>
+    <id>https://oolongbox.com/2019/04/08/hexo-algolia/</id>
     <published>2019-04-08T10:43:24.971Z</published>
     <updated>2019-04-08T11:03:57.753Z</updated>
     
@@ -34,19 +34,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
     
-      <category term="scala" scheme="https://www.oolongbox.com/tags/scala/"/>
+      <category term="scala" scheme="https://oolongbox.com/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>tracer：倒排索引+快速分类</title>
-    <link href="https://www.oolongbox.com/2019/04/08/tracer/"/>
-    <id>https://www.oolongbox.com/2019/04/08/tracer/</id>
+    <link href="https://oolongbox.com/2019/04/08/tracer/"/>
+    <id>https://oolongbox.com/2019/04/08/tracer/</id>
     <published>2019-04-08T09:52:14.900Z</published>
     <updated>2019-04-08T11:03:57.438Z</updated>
     
@@ -62,19 +62,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
     
-      <category term="utils" scheme="https://www.oolongbox.com/tags/utils/"/>
+      <category term="utils" scheme="https://oolongbox.com/tags/utils/"/>
     
   </entry>
   
   <entry>
     <title>表驱动方法在java、scala中的实践</title>
-    <link href="https://www.oolongbox.com/2019/04/07/tabledriven/"/>
-    <id>https://www.oolongbox.com/2019/04/07/tabledriven/</id>
+    <link href="https://oolongbox.com/2019/04/07/tabledriven/"/>
+    <id>https://oolongbox.com/2019/04/07/tabledriven/</id>
     <published>2019-04-07T09:26:18.608Z</published>
     <updated>2019-04-08T11:03:57.698Z</updated>
     
@@ -89,19 +89,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
     
-      <category term="scala" scheme="https://www.oolongbox.com/tags/scala/"/>
+      <category term="scala" scheme="https://oolongbox.com/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://www.oolongbox.com/2019/04/03/hello-world/"/>
-    <id>https://www.oolongbox.com/2019/04/03/hello-world/</id>
+    <link href="https://oolongbox.com/2019/04/03/hello-world/"/>
+    <id>https://oolongbox.com/2019/04/03/hello-world/</id>
     <published>2019-04-03T02:20:26.184Z</published>
     <updated>2019-04-08T11:03:57.582Z</updated>
     
@@ -116,9 +116,9 @@
     
     </summary>
     
-      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
-      <category term="Hello World" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/Hello-World/"/>
+      <category term="Hello World" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/Hello-World/"/>
     
     
   </entry>
