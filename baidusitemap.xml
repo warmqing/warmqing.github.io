@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://oolongbox.com/tracer/</loc>
+    <loc>https://oolongbox.com/2019/04/08/tracer/</loc>
     <lastmod>2019-04-08</lastmod>
   </url>  <url>
-    <loc>https://oolongbox.com/hexo-algolia/</loc>
+    <loc>https://oolongbox.com/2019/04/07/hexo-algolia/</loc>
     <lastmod>2019-04-08</lastmod>
   </url>  <url>
-    <loc>https://oolongbox.com/tabledriven/</loc>
+    <loc>https://oolongbox.com/2019/04/08/tabledriven/</loc>
     <lastmod>2019-04-08</lastmod>
   </url>  <url>
-    <loc>https://oolongbox.com/hello-world/</loc>
+    <loc>https://oolongbox.com/2019/04/03/hello-world/</loc>
     <lastmod>2019-04-08</lastmod>
   </url>
 </urlset>
