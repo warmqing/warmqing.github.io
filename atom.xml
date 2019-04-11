@@ -5,9 +5,9 @@
   <subtitle>Oolong is a happy accident,Serendipity is life</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://oolongbox.com/"/>
+  <link href="https://www.oolongbox.com/"/>
   <updated>2019-04-11T08:06:42.567Z</updated>
-  <id>https://oolongbox.com/</id>
+  <id>https://www.oolongbox.com/</id>
   
   <author>
     <name>warmqing</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>表驱动方法在java、scala中的实践</title>
-    <link href="https://oolongbox.com/box/44b989a/"/>
-    <id>https://oolongbox.com/box/44b989a/</id>
+    <link href="https://www.oolongbox.com/box/44b989a/"/>
+    <id>https://www.oolongbox.com/box/44b989a/</id>
     <published>2019-04-08T11:11:51.000Z</published>
     <updated>2019-04-11T08:06:42.567Z</updated>
     
@@ -34,19 +34,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
     
-      <category term="scala" scheme="https://oolongbox.com/tags/scala/"/>
+      <category term="scala" scheme="https://www.oolongbox.com/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>tracer：倒排索引+快速分类</title>
-    <link href="https://oolongbox.com/box/6677305f/"/>
-    <id>https://oolongbox.com/box/6677305f/</id>
+    <link href="https://www.oolongbox.com/box/6677305f/"/>
+    <id>https://www.oolongbox.com/box/6677305f/</id>
     <published>2019-04-08T09:52:14.900Z</published>
     <updated>2019-04-11T08:06:42.576Z</updated>
     
@@ -111,19 +111,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
     
-      <category term="utils" scheme="https://oolongbox.com/tags/utils/"/>
+      <category term="utils" scheme="https://www.oolongbox.com/tags/utils/"/>
     
   </entry>
   
   <entry>
     <title>使用Algolia索引hexo网站内容</title>
-    <link href="https://oolongbox.com/box/cf61bef0/"/>
-    <id>https://oolongbox.com/box/cf61bef0/</id>
+    <link href="https://www.oolongbox.com/box/cf61bef0/"/>
+    <id>https://www.oolongbox.com/box/cf61bef0/</id>
     <published>2019-04-07T11:11:51.000Z</published>
     <updated>2019-04-11T08:06:42.551Z</updated>
     
@@ -142,19 +142,19 @@
     
     </summary>
     
-      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="java" scheme="https://oolongbox.com/tags/java/"/>
+      <category term="java" scheme="https://www.oolongbox.com/tags/java/"/>
     
-      <category term="scala" scheme="https://oolongbox.com/tags/scala/"/>
+      <category term="scala" scheme="https://www.oolongbox.com/tags/scala/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://oolongbox.com/box/4a17b156/"/>
-    <id>https://oolongbox.com/box/4a17b156/</id>
+    <link href="https://www.oolongbox.com/box/4a17b156/"/>
+    <id>https://www.oolongbox.com/box/4a17b156/</id>
     <published>2019-04-03T02:20:26.184Z</published>
     <updated>2019-04-11T08:06:42.545Z</updated>
     
@@ -167,9 +167,9 @@
     
     </summary>
     
-      <category term="日志" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/"/>
     
-      <category term="Hello World" scheme="https://oolongbox.com/categories/%E6%97%A5%E5%BF%97/Hello-World/"/>
+      <category term="Hello World" scheme="https://www.oolongbox.com/categories/%E6%97%A5%E5%BF%97/Hello-World/"/>
     
     
   </entry>
