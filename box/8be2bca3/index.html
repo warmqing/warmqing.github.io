@@ -33,7 +33,7 @@
 <p>3、从第一页开始以后每次都带上<code>search_after</code> 排序值，从而为无状态实现一个状态，把每次固定的from + size偏移变成一个确定值，而查询则从这个偏移量开始获取size个doc，每个shard 获取size个，coordinate node最后汇总 shards*size 个。<strong>search after是一个常量查询延迟和开销</strong></p>
 <p>Java API：6.3</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SearchResponse response = client.prepareSearch(<span class="string">"index1"</span>, <span class="string">"index2"</span>)</span><br><span class="line">        .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)</span><br><span class="line">        .setQuery(QueryBuilders.termQuery(<span class="string">"multi"</span>, <span class="string">"test"</span>))  <span class="comment">// Query</span></span><br><span class="line">		.searchAfter(sortValues)   <span class="comment">//sortValues</span></span><br><span class="line">        .setPostFilter(QueryBuilders.rangeQuery(<span class="string">"age"</span>).from(<span class="number">12</span>).to(<span class="number">18</span>))     <span class="comment">// Filter</span></span><br><span class="line">        .setFrom(<span class="number">0</span>).setSize(<span class="number">60</span>).setExplain(<span class="keyword">true</span>)</span><br><span class="line">        .get();</span><br></pre></td></tr></table></figure>
-<p>使用search after方式，参数<code>from</code>必须设置为0（或-1）</p>
+<p>使用search after方式，参数<code>from</code>必须设置为0（或-1）<br><a id="more"></a></p>
 <h2 id="Scroll"><a href="#Scroll" class="headerlink" title="Scroll"></a>Scroll</h2><p>使用scroll分页主要分为2步</p>
 <p>第1步，初始化查询，获取scrollId，初始化时将所有符合搜索条件的搜索结果缓存起来，可以想象成快照。</p>
 <p>第2步，使用scrollId迭代查询，从这个快照里取数据，也就是说，在初始化后对索引插入、删除、更新数据都不会影响遍历结果。</p>
