@@ -36,6 +36,7 @@
 <h3 id="●-Minor-GC触发机制："><a href="#●-Minor-GC触发机制：" class="headerlink" title="● Minor GC触发机制："></a>● Minor GC触发机制：</h3><p>当年轻代满时就会触发Minor GC，这里的年轻代满指的是Eden代满，Survivor满不会引发GC。</p>
 <p>新生代分为一个 Eden区和两个Survivor区的垃圾收集叫做 Minor GC。 清除 Eden 和 from ，转到to中。接下来from与to转换。继续清除 Eden和新from，转到to。清除一次后存活超过年龄的 ，转到老年代。to到了阈值后，部分对象转到老年代。</p>
 <h3 id="●-老年代-GC（Major-GC-Full-GC）"><a href="#●-老年代-GC（Major-GC-Full-GC）" class="headerlink" title="● 老年代 GC（Major GC / Full GC）"></a>● 老年代 GC（Major GC / Full GC）</h3><p>指发生在老年代的 GC，出现了 Major GC，经常会伴随至少一次的 Minor GC（但非绝对的，ParallelScavenge 收集器的收集策略里就有直接进行 Major GC 的策略选择过程） 。MajorGC 的速度一般会比 Minor GC 慢 10倍以上。</p>
+<a id="more"></a>
 <h3 id="●-Full-GC触发机制："><a href="#●-Full-GC触发机制：" class="headerlink" title="● Full GC触发机制："></a>● Full GC触发机制：</h3><h3 id="（1）调用System-gc"><a href="#（1）调用System-gc" class="headerlink" title="（1）调用System.gc()"></a>（1）调用System.gc()</h3><p>系统建议执行Full GC，但是虚拟机不一定真正去执行，不建议使用这种方式，通过参数-XX:+DisableExplicitGC禁用显式调用System.gc()</p>
 <h3 id="（2）老年代空间不足"><a href="#（2）老年代空间不足" class="headerlink" title="（2）老年代空间不足"></a>（2）老年代空间不足</h3><p>大对象直接进入老年代、长期存活的对象进入老年代等，发现老年代空间不足，引起Full GC</p>
 <p>通过 -Xmn 调大新生代的大小，让对象尽量在新生代被回收掉，不进入老年代。</p>

@@ -23,7 +23,7 @@
 <li>重新标记</li>
 <li>并发清理</li>
 </ol>
-<p><img src="https://i.loli.net/2020/05/25/RTXYaGhwOQIeyjt.jpg" alt="cms.jpeg"></p>
+<p><img src="https://i.loli.net/2020/05/25/RTXYaGhwOQIeyjt.jpg" alt></p>
 <p>初始标记阶段：（CMS initial mark）标记GC Roots能直接关联的对象，时间短用户线程停顿，也就是 Stop the World 状态</p>
 <p>并发标记阶段：（CMS concurrent mark）GC Roots直接关联对象向下遍历整个对象图，时间长不需要用户线程停顿，这个阶段最耗费时, 但这个阶段是和系统并发运行的，所以不会对系统运行造成影响</p>
 <p>重新标记阶段：（CMS remark）由于第二阶段是并发执行的，一边标记垃圾对象，一边创建新对象，老对象会变成垃圾对象。 所以第三阶段也会进入 Stop the World 状态，并且重新标记，标记的是第二阶段中变动过的少数对象，所以运行速度很快</p>
@@ -37,21 +37,22 @@
 </ul>
 <h2 id="CMS相关JVM参数"><a href="#CMS相关JVM参数" class="headerlink" title="CMS相关JVM参数"></a>CMS相关JVM参数</h2><p>-XmxM4096M：设置JVM最大可用内存为4096M。<br>-Xms4096M ：设置JVM初始内存为4096M。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。</p>
 <p>-Xmn1536M  -Xss256K -XX:+DisableExplicitGC -XX:SurvivorRatio=2 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0 -XX:+CMSClassUnloadingEnabled -XX:LargePageSizeInBytes=128M -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=80 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+PrintClassHistogram -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -Xloggc:/export/Logs/gc.log -XX:HeapDumpPath=/export/Logs/gc.hprof -Dfastjson.parser.autoTypeSupport=true</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseSerialGC</span>：在新生代和老年代使用串行收集器</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:SurvivorRatio</span>：设置<span class="selector-tag">eden</span>区大小和<span class="selector-tag">survivior</span>区大小的比例</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:NewRatio</span>:新生代和老年代的比</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseParNewGC</span>：在新生代使用并行收集器</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseParallelGC</span> ：新生代使用并行回收收集器</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseParallelOldGC</span>：老年代使用并行回收收集器</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:ParallelGCThreads</span>：设置用于垃圾回收的线程数</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseConcMarkSweepGC</span>：新生代使用并行收集器，老年代使用<span class="selector-tag">CMS</span>+串行收集器</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:ParallelCMSThreads</span>：设定<span class="selector-tag">CMS</span>的线程数量</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:CMSInitiatingOccupancyFraction</span>：设置<span class="selector-tag">CMS</span>收集器在老年代空间被使用多少后触发</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+UseCMSCompactAtFullCollection</span>：设置<span class="selector-tag">CMS</span>收集器在完成垃圾收集后是否要进行一次内存碎片的整理</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:CMSFullGCsBeforeCompaction</span>：设定进行多少次<span class="selector-tag">CMS</span>垃圾回收后，进行一次内存压缩</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:+CMSClassUnloadingEnabled</span>：允许对类元数据进行回收</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:CMSInitiatingPermOccupancyFraction</span>：当永久区占用率达到这一百分比时，启动<span class="selector-tag">CMS</span>回收</span><br><span class="line"><span class="selector-tag">-XX</span><span class="selector-pseudo">:UseCMSInitiatingOccupancyOnly</span>：表示只在到达阀值的时候，才进行<span class="selector-tag">CMS</span>回收</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-XX:+UseSerialGC：在新生代和老年代使用串行收集器</span><br><span class="line">-XX:SurvivorRatio：设置eden区大小和survivior区大小的比例</span><br><span class="line">-XX:NewRatio:新生代和老年代的比</span><br><span class="line">-XX:+UseParNewGC：在新生代使用并行收集器</span><br><span class="line">-XX:+UseParallelGC ：新生代使用并行回收收集器</span><br><span class="line">-XX:+UseParallelOldGC：老年代使用并行回收收集器</span><br><span class="line">-XX:ParallelGCThreads：设置用于垃圾回收的线程数</span><br><span class="line">-XX:+UseConcMarkSweepGC：新生代使用并行收集器，老年代使用CMS+串行收集器</span><br><span class="line">-XX:ParallelCMSThreads：设定CMS的线程数量</span><br><span class="line">-XX:CMSInitiatingOccupancyFraction：设置CMS收集器在老年代空间被使用多少后触发</span><br><span class="line">-XX:+UseCMSCompactAtFullCollection：设置CMS收集器在完成垃圾收集后是否要进行一次内存碎片的整理</span><br><span class="line">-XX:CMSFullGCsBeforeCompaction：设定进行多少次CMS垃圾回收后，进行一次内存压缩</span><br><span class="line">-XX:+CMSClassUnloadingEnabled：允许对类元数据进行回收</span><br><span class="line">-XX:CMSInitiatingPermOccupancyFraction：当永久区占用率达到这一百分比时，启动CMS回收</span><br><span class="line">-XX:UseCMSInitiatingOccupancyOnly：表示只在到达阀值的时候，才进行CMS回收</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="G1回收垃圾的4个阶段"><a href="#G1回收垃圾的4个阶段" class="headerlink" title="G1回收垃圾的4个阶段"></a>G1回收垃圾的4个阶段</h2><ul>
 <li>初始标记</li>
 <li>并发标记</li>
 <li>最终标记</li>
 <li>筛选回收</li>
 </ul>
-<p><img src="https://i.loli.net/2020/05/25/9bkXqynZ6g7waBN.jpg" alt="G1.jpeg"></p>
+<p><img src="https://i.loli.net/2020/05/25/9bkXqynZ6g7waBN.jpg" alt></p>
 <p><strong>初始标记（Initail Marking）：</strong>标记一下GC Roots能直接关联到的对象，并且修改TAMS（Next Top at Mark Start）的值，让下一阶段用户程序并发运行时，能在正确可用的Region中创建新对象，这阶段需要停顿线程，但耗时很短。</p>
 <p><strong>并发标记（Concurrent Marking）：</strong>从GC Root开始对堆中对象进行可达性分析，找出存活的对象，这阶段耗时较长，但可与用户程序并发执行。</p>
 <p><strong>最终标记（Final Marking）：</strong>为了修正在并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录（好比一个阿姨一边清理垃圾，另一个人一边扔垃圾）虚拟机会将这段时间的变化记录在Remembered Set Logs 中。最终标记阶段需要把Remenbered Set Logs的数据合并到Remenbered Set中。这个阶段需要线程停顿，但可以并发执行</p>
 <p><strong>筛选回收（Live Data Counting and Evacuation）：</strong>首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划，从Sun公司透露出来的信息来看，这个阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅度提高收集效率。</p>
 <h2 id="G1回收器的特点"><a href="#G1回收器的特点" class="headerlink" title="G1回收器的特点"></a>G1回收器的特点</h2><h5 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h5><p>G1把Java内存拆分成多等份，多个域（Region），逻辑上存在新生代和老年代的概念，但是没有严格区分</p>
 <p>。Region最多分为2048个</p>
-<p><img src="https://i.loli.net/2020/05/25/cxWRfGsmLdJhIFe.png" alt="G1-JVM.png"></p>
+<p><img src="https://i.loli.net/2020/05/25/cxWRfGsmLdJhIFe.png" alt></p>
 <h5 id="可预测的停顿"><a href="#可预测的停顿" class="headerlink" title="可预测的停顿"></a>可预测的停顿</h5><ul>
 <li><p>G1收集器之所以建立可预测的停顿时间模型，是因为它可以有计划地避免在整个Java堆中进行全区域的垃圾收集。</p>
 </li>
