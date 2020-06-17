@@ -66,50 +66,7 @@
 <ul>
 <li>常量在编译阶段会存入调用类的常量池中，本质上并没有直接引用到定义常量的类，因此不会触发定义常量的类的初始化。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ConstClass &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;ConstClass init!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final String HELLO_WORLD = &quot;Hello world&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(ConstClass.HELLO_WORLD);</span><br></pre></td></tr></table></figure>
-<p>## </p>
-<h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p>包含了加载、验证、准备、解析和初始化这 5 个阶段。</p>
-<h3 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h3><p>加载过程完成以下三件事：</p>
-<ul>
-<li>通过类的完全限定名称获取定义该类的二进制字节流。</li>
-<li>将该字节流表示的静态存储结构转换为方法区的运行时存储结构。</li>
-<li>在内存中生成一个代表该类的 Class 对象，作为方法区中该类各种数据的访问入口。</li>
-</ul>
-<p>其中二进制字节流可以从以下方式中获取：</p>
-<ul>
-<li>从 ZIP 包读取，成为 JAR、EAR、WAR 格式的基础。</li>
-<li>从网络中获取，最典型的应用是 Applet。</li>
-<li>运行时计算生成，例如动态代理技术，在 java.lang.reflect.Proxy 使用 ProxyGenerator.generateProxyClass 的代理类的二进制字节流。</li>
-<li>由其他文件生成，例如由 JSP 文件生成对应的 Class 类。</li>
-</ul>
-<h3 id="2-验证"><a href="#2-验证" class="headerlink" title="2. 验证"></a>2. 验证</h3><p>确保 Class 文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。</p>
-<h3 id="3-准备"><a href="#3-准备" class="headerlink" title="3. 准备"></a>3. 准备</h3><p>类变量是被 static 修饰的变量，准备阶段为类变量分配内存并设置初始值，使用的是方法区的内存。</p>
-<p>实例变量不会在这阶段分配内存，它会在对象实例化时随着对象一起被分配在堆中。</p>
-<p>初始值一般为 0 值，例如下面的类变量 value 被初始化为 0 而不是 123。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static int value = 123;</span><br></pre></td></tr></table></figure>
-<p>如果类变量是常量，那么它将初始化为表达式所定义的值而不是 0。例如下面的常量 value 被初始化为 123 而不是 0。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static final int value = 123;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">对于 byte 类型，默认值为零，即（byte）0。</span><br><span class="line">对于 short 类型，默认值为零，即（short）0。</span><br><span class="line">对于 int 类型，默认值为零，即 0。</span><br><span class="line">对于 long 类型，默认值为零，即 0L。</span><br><span class="line">对于 float 类型，默认值为正零，即 0.0f。</span><br><span class="line">对于 double 类型，默认值为正零，即 0.0d。</span><br><span class="line">对于 char 类型，默认值为空字符，即 &apos;\u0000&apos;。</span><br><span class="line">对于 boolean 类型，默认值为 false。</span><br><span class="line">对于所有引用类型，默认值为 null。</span><br></pre></td></tr></table></figure>
-<h3 id="4-解析"><a href="#4-解析" class="headerlink" title="4. 解析"></a>4. 解析</h3><p>将常量池的符号引用替换为直接引用的过程。把类中的符号引用转化为直接引用（比如说方法的符号引用，是有方法名和相关描述符组成，在解析阶段，JVM把符号引用替换成一个指针，这个指针就是直接引用，它指向该类的该方法在方法区中的内存位置）</p>
-<h3 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5.初始化"></a>5.初始化</h3><p>初始化阶段是虚拟机执行类构造器 <clinit>() 方法的过程。在准备阶段，类变量已经赋过一次系统要求的初始值，而在初始化阶段，根据程序员通过程序制定的主观计划去初始化类变量和其它资源。</clinit></p>
-<p>1、<clinit>() 是由编译器自动收集类中所有类变量的赋值动作和静态语句块中的语句合并产生的，编译器收集的顺序由语句在源文件中出现的顺序决定。特别注意的是，静态语句块只能访问到定义在它之前的类变量，定义在它之后的类变量只能赋值，不能访问。例如以下代码：</clinit></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        i = 0;                // 给变量赋值可以正常编译通过</span><br><span class="line">        System.out.print(i);  // 这句编译器会提示“非法向前引用”</span><br><span class="line">    &#125;</span><br><span class="line">    static int i = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2、虚拟机会保证在子类的＜clinit＞（）方法执行之前，父类的＜clinit＞（）方法已经执行完毕。 因此在虚拟机中第一个被执行的＜clinit＞（）方法的类肯定是java.lang.Object。由于父类的＜clinit＞（）方法先执行，也就意味着父类中定义的静态语句块要优先于子类的变量赋值操作</p>
-<p>3、接口中不可以使用静态语句块，但仍然有类变量初始化的赋值操作，因此接口与类一样都会生成 <clinit>() 方法。但接口与类不同的是，执行接口的 <clinit>() 方法不需要先执行父接口的 <clinit>() 方法。只有当父接口中定义的变量使用时，父接口才会初始化。另外，接口的实现类在初始化时也一样不会执行接口的 <clinit>() 方法。<strong>注意：接口中的属性都是static final类型的常量，因此在准备阶段就已经初始化。</strong></clinit></clinit></clinit></clinit></p>
-<p>4、虚拟机会保证一个类的 <clinit>() 方法在多线程环境下被正确的加锁和同步，如果多个线程同时初始化一个类，只会有一个线程执行这个类的 <clinit>() 方法，其它线程都会阻塞等待，直到活动线程执行 <clinit>() 方法完毕。如果在一个类的 <clinit>() 方法中有耗时的操作，就可能造成多个线程阻塞，在实际过程中此种阻塞很隐蔽。</clinit></clinit></clinit></clinit></p>
-<h2 id="类与类加载器"><a href="#类与类加载器" class="headerlink" title="类与类加载器"></a>类与类加载器</h2><p>把实现类加载阶段中的“通过一个类的全限定名来获取描述此类的二进制字节流”这个动作的代码模块称为“类加载器”。</p>
-<h3 id="1-类的唯一性"><a href="#1-类的唯一性" class="headerlink" title="1.类的唯一性"></a>1.类的唯一性</h3><p>两个类相等，需要类本身相等，并且使用同一个类加载器进行加载。</p>
-<p>即使两个类来源于同一个 Class 文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那这两个类也不相等。<br>这里所指的“相等”，包括代表类的 Class 对象的 equals() 方法、 isAssignableFrom() 方法、isInstance() 方法的返回结果为true，也包括使用 instanceof 关键字做对象所属关系判定结果为 true。</p>
-<h3 id="2-类加载器分类"><a href="#2-类加载器分类" class="headerlink" title="2.类加载器分类"></a>2.类加载器分类</h3><p>类加载器可以划分为：</p>
-<ul>
-<li>启动类加载器（Bootstrap ClassLoader）,使用 C++ 实现，是虚拟机自身的一部分,负责将存在&lt;JRE_HOME&gt;\lib 目录中的，或者被 -Xbootclasspath 参数所指定的路径中的，并且是虚拟机识别的（仅按照文件名识别，如 rt.jar，名字不符合的类库即使放在 lib 目录中也不会被加载）类库加载到虚拟机内存中.</li>
-<li>扩展类加载器（Extension ClassLoader）由 ExtClassLoader（sun.misc.Launcher$ExtClassLoader）实现的。负责将 &lt;JAVA_HOME&gt;/lib/ext 或者被 java.ext.dir 系统变量所指定路径中的所有类库加载到内存中，开发者可以直接使用扩展类加载器。</li>
-<li>应用程序类加载器（Application ClassLoader）由 AppClassLoader（sun.misc.Launcher$AppClassLoader）实现的。由于这个类加载器是 ClassLoader 中的 getSystemClassLoader() 方法的返回值，因此一般称为系统类加载器。负责加载用户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</li>
-</ul>
-<h3 id="3-双亲委派模型"><a href="#3-双亲委派模型" class="headerlink" title="3.双亲委派模型"></a>3.双亲委派模型</h3><p><img src="https://i.loli.net/2020/06/17/agBy59L36hFN1VW.png" alt></p>
-<p>应用程序是由三种类加载器互相配合从而实现类加载，除此之外还可以加入自己定义的类加载器。</p>
-<p>双亲委派模型（Parents Delegation Model）, 要求除了顶层的启动类加载器外，其它的类加载器都要有自己的父类加载器。这里的父子关系一般通过组合关系（Composition）来实现，而不是继承关系（Inheritance）。</p>
-<p>例如类 <code>java.lang.Object</code>，它存放在 rt.jar 之中，无论哪一个类加载器要加载这个类，最终都是委派给处于模型最顶端的启动类加载器进行加载，因此 Object 类在程序的各种类加载器环境中都是同一个类。</p></div><a class="more" href="/box/a25844fe/#more">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/box/a9fa83bb/">JVM——内存模型</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/日志/">日志</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/JVM/">JVM</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span><div class="content"><h1 id="JVM——内存模型"><a href="#JVM——内存模型" class="headerlink" title="JVM——内存模型"></a>JVM——内存模型</h1><h2 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h2><p><img src="https://i.loli.net/2020/06/03/A9fGOk75RK6ezCE.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ConstClass &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;ConstClass init!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final String HELLO_WORLD = &quot;Hello world&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(ConstClass.HELLO_WORLD);</span><br></pre></td></tr></table></figure></div><a class="more" href="/box/a25844fe/#more">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/box/a9fa83bb/">JVM——内存模型</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/日志/">日志</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/JVM/">JVM</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span><div class="content"><h1 id="JVM——内存模型"><a href="#JVM——内存模型" class="headerlink" title="JVM——内存模型"></a>JVM——内存模型</h1><h2 id="JDK6"><a href="#JDK6" class="headerlink" title="JDK6"></a>JDK6</h2><p><img src="https://i.loli.net/2020/06/03/A9fGOk75RK6ezCE.png" alt></p>
 <h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><p><img src="https://i.loli.net/2020/06/03/Xx1caoJfMNwdK59.png" alt></p>
 <p>​                                                   </p>
 <h2 id="一、JVM内存模型分类"><a href="#一、JVM内存模型分类" class="headerlink" title="一、JVM内存模型分类"></a>一、JVM内存模型分类</h2><p>JVM内存模型从线程维度归类分为：<strong>线程私有内存</strong>、<strong>线程共享内存</strong>、以及不在堆内的<strong>直接内存</strong>。</p>
@@ -126,24 +83,7 @@
 <ul>
 <li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出<code>StackOverflowError</code>异常；</li>
 <li>如果虚拟机栈可以动态扩展（当前大部分的Java虚拟机都可动态扩展，只不过Java虚拟机规范中也允许固定长度的虚拟机栈），当扩展时无法申请到足够的内存时会抛出<code>OutOfMemoryError</code>异常。</li>
-</ul>
-<h3 id="栈帧-Stack-Frame"><a href="#栈帧-Stack-Frame" class="headerlink" title="栈帧(Stack Frame)"></a>栈帧(Stack Frame)</h3><h4 id="局部变量表（Local-Variable-Table）"><a href="#局部变量表（Local-Variable-Table）" class="headerlink" title="局部变量表（Local Variable Table）"></a>局部变量表<strong>（Local Variable Table）</strong></h4><p><code>局部变量表是一组变量值存储空间</code>，用于存放<code>方法参数</code>和<code>方法内部定义的局部变量</code>。在Java程序被编译成Class文件时，就在方法的Code属性的max_locals数据项中确定了该方法所需要分配的最大局部变量表的容量。局部变量表的容量以<code>变量槽（Slot）</code>为最小单位，每个变量槽都可以存储 32 位长度的内存空间.</p>
-<p><strong>可存放数据类型</strong></p>
-<p><code>基本数据类型（boolean、byte、char、short、int、float、long、double）</code></p>
-<p>byte、short、char在存储之前转换为int，boolean在存储前转换为int，0标识false，1 标识true</p>
-<p><code>对象引用（reference类型）</code></p>
-<p>虚拟机规范没有明确说明它的长度，它不等同于对象本身，根据不同的虚拟机实现，它可能是一个指向对象起始地址的引用指针，也可能指向一个代表对象的句柄或者其他与此对象相关的位置</p>
-<p><code>returnAddress类型</code></p>
-<p>指向了一条字节码指令的地址</p>
-<p><strong>编译期确定占用内存空间大小</strong></p>
-<p>其中<strong>64位长度的long和double类型的数据会占用2个局部变量空间（Slot）</strong>，其余的数据类型和 returnAddress（返回地址）只占用1个变量槽。当进入一个方法时，这个方法需要在帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变局部变量表的大小。</p>
-<p><strong>索引访问</strong></p>
-<p>JVM会为局部变量表的每个Slot分配一个访问索引，通过这个索引可以访问到局部变量表中的局部变量值</p>
-<p>占用两个Slot的变量也就是double和long，只需要使用前一个索引即可</p>
-<p><strong>当前对象引用this</strong></p>
-<p>如果当前帧是由构造方法或者实例方法创建的，那么该对象引用this将会存在局部变量表<code>第0位索引</code>的Slot处，非静态方法，都会创建this的一个参数，index为0，其余的参数是按照顺序排放的，static 方法被不可以使用this，是因为static方法中没有放this的index</p>
-<p><strong>必须进行显式赋值</strong></p>
-<p><code>系统不会为局部变量赋予初始值</code>（实例变量和类变量都会被赋予初始值）。也就是说不存在类变量那样的准备阶段。 局部变量：在使用前，必须进行显示赋值，否则编译不通过</p></div><a class="more" href="/box/a9fa83bb/#more">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/box/2aa0380c/">JVM——CMS、G1收集器</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/日志/">日志</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/JVM/">JVM</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span><div class="content"><h1 id="JVM——CMS、G1收集器"><a href="#JVM——CMS、G1收集器" class="headerlink" title="JVM——CMS、G1收集器"></a>JVM——CMS、G1收集器</h1><h2 id="CMS回收垃圾的4个阶段"><a href="#CMS回收垃圾的4个阶段" class="headerlink" title="CMS回收垃圾的4个阶段"></a>CMS回收垃圾的4个阶段</h2><ol>
+</ul></div><a class="more" href="/box/a9fa83bb/#more">Read more</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/box/2aa0380c/">JVM——CMS、G1收集器</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-17</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/日志/">日志</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/JVM/">JVM</a><span class="article-meta__link">-</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/Java/">Java</a></span><div class="content"><h1 id="JVM——CMS、G1收集器"><a href="#JVM——CMS、G1收集器" class="headerlink" title="JVM——CMS、G1收集器"></a>JVM——CMS、G1收集器</h1><h2 id="CMS回收垃圾的4个阶段"><a href="#CMS回收垃圾的4个阶段" class="headerlink" title="CMS回收垃圾的4个阶段"></a>CMS回收垃圾的4个阶段</h2><ol>
 <li>初始标记</li>
 <li>并发标记</li>
 <li>重新标记</li>
