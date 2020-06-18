@@ -21,7 +21,8 @@
 <h2 id="订单变化基差"><a href="#订单变化基差" class="headerlink" title="订单变化基差"></a>订单变化基差</h2><p><strong>基差</strong>是某一特定商品于当前时刻的价格与上一时刻价格之差。计算方法是使用当前价格减去历史价格。若当前价格低于历史价格，基差为负值；当前价格高于历史价格，基差为正值。</p>
 <p><strong>订单变化</strong>，此处仅列举一些简单的场景，当订单由多件sku（商品）组成，发生单件退换货时，会导致订单金额的扣除，当订单下单后取消，或者完成后被风控判定无效，会导致订单状态由“有效”变为“无效”。</p>
 <p>使用基差的方式，将订单变化的过程转发为Kafka中的消息体，如下图中的订单变化，分别会发送Message1、Message2、Message3三条消息</p>
-<p><img src="https://i.loli.net/2020/06/17/zCNSLn19IfxMYcq.png" alt></p>
+<p><img src="https://i.loli.net/2020/06/18/ipXb18LIlP3AWEf.png" alt></p>
+<a id="more"></a>
 <h2 id="Spark-Streaming汇总"><a href="#Spark-Streaming汇总" class="headerlink" title="Spark Streaming汇总"></a>Spark Streaming汇总</h2><p>Spark Streaming对Kafka消息，分维度进行累加</p>
 <p>核心代码：</p>
 <p><strong>订单Vo类</strong></p>
